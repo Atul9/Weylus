@@ -1,5 +1,4 @@
-use serde::{Deserialize, Serialize, Deserializer};
-
+use serde::{Deserialize, Deserializer, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub enum NetMessage {
@@ -42,8 +41,7 @@ bitflags! {
     }
 }
 
-fn from_str<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Button, D::Error>
-{
+fn from_str<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Button, D::Error> {
     let bits: u8 = Deserialize::deserialize(deserializer)?;
     Ok(Button::from_bits_truncate(bits))
 }

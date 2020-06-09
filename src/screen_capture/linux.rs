@@ -93,8 +93,8 @@ impl ScreenCapture for ScreenCaptureX11 {
         let height = self.img.height as usize;
 
         // Y
-        for yy in 0..height-height%2 {
-            for xx in 0..width-width%2 {
+        for yy in 0..height - height % 2 {
+            for xx in 0..width - width % 2 {
                 let i = width * yy + xx;
                 let b = data[4 * i] as i32;
                 let g = data[4 * i + 1] as i32;
@@ -106,11 +106,12 @@ impl ScreenCapture for ScreenCaptureX11 {
         // Cb and Cr
         for yy in 0..(height / 2) {
             for xx in 0..(width / 2) {
-                let mut b = data[8 * (yy * width + xx)] as i32 + data[8 * (yy * width + xx) + 4] as i32;
-                let mut g =
-                    data[8 * (yy * width + xx) + 1] as i32 + data[8 * (yy * width + xx) + 1 + 4] as i32;
-                let mut r =
-                    data[8 * (yy * width + xx) + 2] as i32 + data[8 * (yy * width + xx) + 2 + 4] as i32;
+                let mut b =
+                    data[8 * (yy * width + xx)] as i32 + data[8 * (yy * width + xx) + 4] as i32;
+                let mut g = data[8 * (yy * width + xx) + 1] as i32
+                    + data[8 * (yy * width + xx) + 1 + 4] as i32;
+                let mut r = data[8 * (yy * width + xx) + 2] as i32
+                    + data[8 * (yy * width + xx) + 2 + 4] as i32;
                 b += data[8 * (yy * width + xx) + 4 * width] as i32
                     + data[8 * (yy * width + xx) + 4 + 4 * width] as i32;
                 g += data[8 * (yy * width + xx) + 1 + 4 * width] as i32
